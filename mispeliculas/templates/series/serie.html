@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+<h1>Series</h1>
+
+{% for serie in series %}
+
+<article>
+       <h1>{{serie.titulo}}</h1>
+</article>
+
+{%endfor%}
+
+{% endblock %}

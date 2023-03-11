@@ -1,0 +1,24 @@
+<nav>
+    <ul>
+        <li>
+            <a href="{% url 'index' %}">Home</a>
+        </li>
+        <li>
+            <a href="{% url 'about' %}">About</a>
+        </li>
+        <li>
+            <a href="{% url 'series' %}">Series</a>
+        </li>
+        <li>
+            <a href="{% url 'capitulos' %}">Capitulos</a>
+        </li>
+        <li>
+            <a href="{% url 'crearCapitulo' %}">Crear Capitulo</a>
+        </li>
+        <li>
+            <a href="{% url 'crearSerie' %}">Crear Serie</a>
+        </li>
+    </ul>
+
+{% block content %}
+{% endblock %}

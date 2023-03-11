@@ -1,0 +1,31 @@
+{% extends 'layouts/base.html' %}
+
+
+{% block content %}
+<h1>Capitulos</h1>
+
+{% for capitulo in capitulos %}
+
+<div>
+    <h1>{% if capitulo.visto == False %} ⏱ {% else %} ✅ {% endif %} {{capitulo.nombre}}</h1>
+
+    {% if capitulo.visto == False %}
+    <p>Capitulo aún no visto</p>
+    {% else %}
+    <p>Capitulo visto</p>
+    {% endif %}
+   
+    <p>{{capitulo.temporada}}</p>
+    <p>Serie: {{capitulo.serie.titulo}}</p>
+    <button>
+        Delete
+    </button>
+    <button>
+        ✅ Visto
+    </button>
+    
+</div>
+
+{% endfor %}
+
+{% endblock %}

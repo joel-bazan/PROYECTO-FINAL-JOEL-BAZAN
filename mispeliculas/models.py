@@ -24,22 +24,25 @@ class Serie (models.Model):
 
 class Capitulo (models.Model):
     numero= models.IntegerField(default=0)
+    nombre= models.CharField(max_length=200)
+    descripcion=models.CharField(max_length=500, default="Nuevo Capítulo")
     temporada= models.IntegerField(default=0)
     serie=models.ForeignKey(Serie, on_delete=models.CASCADE)
+    visto=models.BooleanField(default=False)
     fecha_emision=models.DateField
 
     def __str__(self):
-        return self.serie.titulo +"" + self.temporada + "x" + self.numero
+        return self.serie.titulo #+"" + self.temporada + "x" + self.numero
 
 class Documentales (models.Model):
-    numero= models.IntegerField(default=0)
-    temporada= models.IntegerField(default=0)
-    serie=models.ForeignKey(Serie, on_delete=models.CASCADE)
-    fecha_emision=models.DateField
+    titulo=models.CharField(max_length=200)
+    maker=models.CharField(max_length=200, blank=True)
+    fecha = models.DateField
+    descargada=models.BooleanField(default=False, blank=True)
 
     def __str__(self):
         return self.serie.titulo
-    
+  
 """"
     pelicula=Pelicula(titulo='Rocky', director= 'Sylvester Stallone')
     pelicula.save()
