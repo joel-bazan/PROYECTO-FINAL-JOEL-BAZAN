@@ -21,6 +21,9 @@
             <li>
                 <a href="{% url 'capitulos' %}">Capitulos</a>
             </li>
+
+            
+            {% if user.is_authenticated %}
             <li>
                 <a href="{% url 'crearCapitulo' %}">Crear Capitulo</a>
             </li>
@@ -30,8 +33,6 @@
             <li>
                 <a href="{% url 'crearPelicula' %}">Crear Pelicula</a>
             </li>
-            
-            {% if user.is_authenticated %}
             <li>
                 <a href="/logout">Logout</a>
             </li>
@@ -42,6 +43,7 @@
             <li>
                 <a href="{% url 'signin' %}">Signin</a>
             </li>
+            
             {% endif %}
             
         </ul>

@@ -1,0 +1,32 @@
+{% extends 'layouts/base.html' %}
+
+
+
+{% block content %}
+
+<h1>
+    {{capitulo.nombre}}
+</h1>
+
+{{error}}
+
+<form method="POST">
+
+    {% csrf_token %}
+    {{form.as_p}}
+    <button>
+        Update
+    </button>
+
+</form>
+
+<form action="{% url 'deleteCapitulo' capitulo.id %}" method="POST">
+    {% csrf_token %}
+    <button>
+        Delete
+    </button>
+
+</form>
+
+
+{% endblock %}

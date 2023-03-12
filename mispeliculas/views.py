@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .models import Serie, Capitulo
 from .forms import form_crearCapitulo, form_crearSerie, form_crearPelicula
@@ -96,10 +96,52 @@ def capitulos(request):
 def crear_capitulo(request):
     if request.method == 'GET':  # (mostrar interfaz):
         return render(request, 'capitulos/crearCapitulo.html', {'form': form_crearCapitulo()})
-
     else:
+        try:
+            formulario=form_crearCapitulo(request.POST)
+            if formulario.is_valid():
+                NuevoCapitulo=formulario.save(commit=False)
+                NuevoCapitulo.user=request.user
+                NuevoCapitulo.save()
+            return redirect('crearCapitulo')
+        
+        except ValueError:
+            return render(request, 'capitulos/crearCapitulo.html', {
+                'form': form_crearCapitulo(),
+                'error':'Por favor ingrese datos validos'
+                })
+
+        #print(NuevoCapitulo)
+       #form = form_crearCapitulo(request.POST)
+       #NuevoCapitulo = form.save(commit=False)
+       #print(NuevoCapitulo)
+       #NuevoCapitulo.user=request.user
+       #NuevoCapitulo.save()
+        #return render(request, 'capitulos/crearCapitulo.html', {'form': form_crearCapitulo()})
+def detalle_capitulo(request,capitulo_id):
+    if request.method == 'GET':
+        capitulo = get_object_or_404(Capitulo, pk=capitulo_id, user=request.user)
+        form=form_crearCapitulo(instance=capitulo)
+        return render(request, 'capitulos/detalleCapitulo.html', {'capitulo':capitulo, 'form':form})
+    else:
+        try:
+            capitulo = get_object_or_404(Capitulo, pk=capitulo_id, user=request.user)
+            form = form_crearCapitulo(request.POST, instance=capitulo)
+            form.save()
+            #print(request.POST)
+            return redirect('capitulos')
+        except ValueError:
+            return render(request, 'capitulos/detalleCapitulo.html', {'capitulo':capitulo, 'form':form, 'error': 'No se actualizo el capitulo'})
+        #return render(request, 'capitulos/detalleCapitulo.html', {'form':form})
+"""
         Capitulo.objects.create(
             nombre=request.POST['nombre'], descripcion=request.POST['descripcion'], serie_id=1)
+        return redirect('capitulos')
+        """
+def delete_capitulo(request, capitulo_id):
+    capitulo = get_object_or_404(Capitulo, pk=capitulo_id, user=request.user)
+    if request.method == 'POST':
+        capitulo.delete()
         return redirect('capitulos')
 
 

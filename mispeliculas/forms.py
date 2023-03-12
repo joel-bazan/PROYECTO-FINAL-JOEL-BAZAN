@@ -8,7 +8,7 @@ from .models import Capitulo, Serie, Pelicula
 class form_crearCapitulo(ModelForm):
  class Meta:
         model=Capitulo
-        fields=['numero','nombre','descripcion','temporada','serie','visto','fecha_emision','reseña']   
+        fields=['numero','nombre','descripcion','temporada','serie','visto','fecha_emision','reseña']
     #nombre = forms.CharField(label="Nombre del capítulo", max_length=200)
     #descripcion = forms.CharField(label= "Descripción",widget=forms.Textarea)
 

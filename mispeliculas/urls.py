@@ -13,6 +13,8 @@ urlpatterns = [
     path('capitulo/', views.capitulos, name="capitulos"),
     path('pelicula/', views.capitulos, name="peliculas"),
     path('crearCapitulo/', views.crear_capitulo, name="crearCapitulo"),
+    path('detalleCapitulo/<int:capitulo_id>/', views.detalle_capitulo, name="detalleCapitulo"),
+    path('detalleCapitulo/<int:capitulo_id>/delete', views.delete_capitulo, name="deleteCapitulo"),
     path('crearSerie/', views.crear_serie, name="crearSerie"),
     path('crearPelicula/', views.crear_pelicula, name="crearPelicula"),
     ]

@@ -7,16 +7,24 @@
 {% for capitulo in capitulos %}
 
 <div>
-    <h1>{% if capitulo.visto == False %} ⏱ {% else %} ✅ {% endif %} {{capitulo.nombre}}</h1>
+    <li>
+        <a href="{% url 'detalleCapitulo' capitulo.id %}">
+            <h1>{% if capitulo.visto == False %} ⏱ {% else %} ✅ {% endif %} {{capitulo.nombre}}</h1>
+            <h3>{{capitulo.descripcion}}</h3>
+        </a>
+    </li>
 
+<!---->
     {% if capitulo.visto == False %}
-    <p>Capitulo aún no visto</p>
+    <p>Capitulo aún no visto por {{capitulo.user.username}}</p>
     {% else %}
-    <p>Capitulo visto</p>
+    <p>Capitulo visto por {{capitulo.user.username}}</p>
     {% endif %}
-   
-    <p>{{capitulo.temporada}}</p>
+<!---->
     <p>Serie: {{capitulo.serie.titulo}}</p>
+    <p>Temporada: {{capitulo.temporada}}</p>
+    <p>Autor: {{capitulo.user.username}}</p>
+    <p>Reseña: {{capitulo.reseña}}</p>
     <button>
         Delete
     </button>

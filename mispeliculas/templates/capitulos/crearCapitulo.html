@@ -5,7 +5,9 @@
 {% block content %}
 <h1>Crear un nuevo capitulo</h1>
 
-<form method="POST">
+    {{error}}
+
+<form action='/crearCapitulo/' method="POST">
     {% csrf_token %}
     {{form.as_p}}
 
