@@ -1,0 +1,15 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+<h1>Peliculas</h1>
+
+{% for pelicula in peliculas %}
+
+<article>
+       <h1>{{pelicula.titulo}}</h1>
+</article>
+
+{%endfor%}
+
+{% endblock %}

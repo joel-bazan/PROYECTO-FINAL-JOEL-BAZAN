@@ -4,15 +4,17 @@
 
 {% block content %}
 
+<h1>signin</h1>
+
 {{error}}
 
-<form action="/signup/" method="POST">
+<form action="/signin/"method="POST">
     {% csrf_token %}
     {{form.as_p}}
-
     <button>
-        Signup
+        Signin
     </button>
+
 </form>
 
 {% endblock %}

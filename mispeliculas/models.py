@@ -1,12 +1,16 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class Pelicula (models.Model):
     titulo=models.CharField(max_length=200)
     genero = models.CharField(max_length=200)
     director=models.CharField(max_length=200, blank=True)
-    fecha = models.DateField
+    fecha = models.DateField(null=True)
     descargada=models.BooleanField(default=False, blank=True)
+    user=models.ForeignKey(User, on_delete=models.CASCADE,default=True)
+    reseña=models.TextField(blank=True)
+
 
     def __str__(self):
         return self.titulo
@@ -14,10 +18,12 @@ class Pelicula (models.Model):
 class Serie (models.Model):
     titulo=models.CharField(max_length=200)
     genero = models.CharField(max_length=200)
-    fecha = models.DateField
+    fecha = models.DateField(null=True)
     temporadas= models.IntegerField(default=1)
     completada=models.BooleanField(default=False)
     descargada=models.BooleanField(default=False)
+    reseña=models.TextField(blank=True)
+    user=models.ForeignKey(User, on_delete=models.CASCADE,default=True)
 
     def __str__(self):
         return self.titulo
@@ -29,10 +35,12 @@ class Capitulo (models.Model):
     temporada= models.IntegerField(default=0)
     serie=models.ForeignKey(Serie, on_delete=models.CASCADE)
     visto=models.BooleanField(default=False)
-    fecha_emision=models.DateField
+    fecha_emision=models.DateField(null=True)
+    user=models.ForeignKey(User, on_delete=models.CASCADE,default=True)
+    reseña=models.TextField(blank=True)
 
     def __str__(self):
-        return self.serie.titulo #+"" + self.temporada + "x" + self.numero
+        return self.serie.titulo +" - by " + self.user.username # + "x" + self.numero
 
 class Documentales (models.Model):
     titulo=models.CharField(max_length=200)

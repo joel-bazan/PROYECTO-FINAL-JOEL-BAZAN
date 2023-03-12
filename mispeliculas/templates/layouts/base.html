@@ -1,24 +1,53 @@
-<nav>
-    <ul>
-        <li>
-            <a href="{% url 'index' %}">Home</a>
-        </li>
-        <li>
-            <a href="{% url 'about' %}">About</a>
-        </li>
-        <li>
-            <a href="{% url 'series' %}">Series</a>
-        </li>
-        <li>
-            <a href="{% url 'capitulos' %}">Capitulos</a>
-        </li>
-        <li>
-            <a href="{% url 'crearCapitulo' %}">Crear Capitulo</a>
-        </li>
-        <li>
-            <a href="{% url 'crearSerie' %}">Crear Serie</a>
-        </li>
-    </ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reseñas de películas y series</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li>
+                <a href="{% url 'index' %}">Home</a>
+            </li>
+            <li>
+                <a href="{% url 'series' %}">About</a>
+            </li>
+            <li>
+                <a href="{% url 'series' %}">Series</a>
+            </li>
+            <li>
+                <a href="{% url 'capitulos' %}">Capitulos</a>
+            </li>
+            <li>
+                <a href="{% url 'crearCapitulo' %}">Crear Capitulo</a>
+            </li>
+            <li>
+                <a href="{% url 'crearSerie' %}">Crear Serie</a>
+            </li>
+            <li>
+                <a href="{% url 'crearPelicula' %}">Crear Pelicula</a>
+            </li>
+            
+            {% if user.is_authenticated %}
+            <li>
+                <a href="/logout">Logout</a>
+            </li>
+            {% else %}
+            <li>
+                <a href="{% url 'signup' %}">Signup</a>
+            </li>
+            <li>
+                <a href="{% url 'signin' %}">Signin</a>
+            </li>
+            {% endif %}
+            
+        </ul>
+    
+    {% block content %}
+    {% endblock %}
+</body>
+</html>
 
-{% block content %}
-{% endblock %}
