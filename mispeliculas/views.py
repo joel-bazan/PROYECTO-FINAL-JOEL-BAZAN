@@ -1,11 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
-from .models import Serie, Capitulo
+from .models import Serie, Capitulo, Pelicula
 from .forms import form_crearCapitulo, form_crearSerie, form_crearPelicula
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib.auth import login, logout, authenticate
 from django.db import IntegrityError
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -78,6 +79,10 @@ def hello(request, username):
 
     return HttpResponse("<h2>Hello %s</h2>" % username)
 
+def peliculas(request):
+    # capitulo = Capitulo.objects.get(nombre=nombre)
+    peliculas = Pelicula.objects.all()
+    return render(request, "peliculas/pelicula.html", {'peliculas': peliculas})
 
 def series(request):
     # series = list(Serie.objects.values())
@@ -92,7 +97,7 @@ def capitulos(request):
     capitulos = Capitulo.objects.all()
     return render(request, "capitulos/capitulo.html", {'capitulos': capitulos})
 
-
+@login_required
 def crear_capitulo(request):
     if request.method == 'GET':  # (mostrar interfaz):
         return render(request, 'capitulos/crearCapitulo.html', {'form': form_crearCapitulo()})
@@ -118,6 +123,8 @@ def crear_capitulo(request):
        #NuevoCapitulo.user=request.user
        #NuevoCapitulo.save()
         #return render(request, 'capitulos/crearCapitulo.html', {'form': form_crearCapitulo()})
+
+@login_required
 def detalle_capitulo(request,capitulo_id):
     if request.method == 'GET':
         capitulo = get_object_or_404(Capitulo, pk=capitulo_id, user=request.user)
@@ -138,13 +145,14 @@ def detalle_capitulo(request,capitulo_id):
             nombre=request.POST['nombre'], descripcion=request.POST['descripcion'], serie_id=1)
         return redirect('capitulos')
         """
+@login_required
 def delete_capitulo(request, capitulo_id):
     capitulo = get_object_or_404(Capitulo, pk=capitulo_id, user=request.user)
     if request.method == 'POST':
         capitulo.delete()
         return redirect('capitulos')
 
-
+@login_required
 def crear_serie(request):
     if request.method == 'GET':  # (mostrar interfaz):
         return render(request, 'series/crearSerie.html', {
@@ -154,7 +162,7 @@ def crear_serie(request):
         Serie.objects.create(titulo=request.POST["titulo"])
         return redirect('series')
 
-
+@login_required
 def crear_pelicula(request):
     if request.method == 'GET':  # (mostrar interfaz):
         return render(request, 'peliculas/crearPelicula.html', {
