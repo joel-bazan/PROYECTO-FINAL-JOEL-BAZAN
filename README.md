@@ -4,4 +4,4 @@ En el home (index) se puede iniciar sesión o registrarse, para luego crear la r
 
 La barra de navegación permite ir directamente a los formularios.
 
-video funcionando: 
+video funcionando: https://drive.google.com/drive/folders/1oqmY78cOo_7H5uHfXopXT85dDkrxAlK4?usp=share_link
