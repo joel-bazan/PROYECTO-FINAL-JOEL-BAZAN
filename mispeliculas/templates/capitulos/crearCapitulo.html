@@ -3,18 +3,26 @@
 
 
 {% block content %}
-<h1>Crear un nuevo capitulo</h1>
+<h1 class="text-center">Crear reseña de un nuevo capitulo</h1>
 
-    {{error}}
-
-<form action='/crearCapitulo/' method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-
-    <button>
-        Save
-    </button>
-</form>
+    
+    <main class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <form action="/crearCapitulo/" method="POST" class="card card-body text-center">
+   
+                    {{error}}
+                    {% csrf_token %}
+                    {{form}}
+                
+                    <button class="btn btn-secondary">
+                        Save
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+    </main>
 
 
 {% endblock %}

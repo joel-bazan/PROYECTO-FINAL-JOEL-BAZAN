@@ -4,17 +4,22 @@
 
 {% block content %}
 
-<h1>signin</h1>
-
-{{error}}
-
-<form action="/signin/"method="POST">
-    {% csrf_token %}
-    {{form.as_p}}
-    <button>
-        Signin
-    </button>
-
-</form>
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
+            <form action="/signin/" method="POST" class="card card-body text-center">
+                <h1>Iniciar sesion</h1>    
+                {{error}}    
+                {% csrf_token %}
+                {{form}}
+            
+                <button class="btn btn-secondary">
+                    Iniciar sesion
+                </button>
+            </form>
+        </div>
+    </div>
+    
+</main>
 
 {% endblock %}

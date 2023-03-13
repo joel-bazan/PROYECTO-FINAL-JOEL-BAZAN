@@ -2,16 +2,25 @@
 
 {% block content %}
 
-    <h1> Crear Serie </h1>
-    
-    <form method="POST">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button>
-            Save
-        </button>
+    <h1 class="text-center"> Crear una nueva serie </h1>
 
-    </form>
+    <main class="container">
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <form action="/crearSerie/" method="POST" class="card card-body text-center">
    
+
+                    {% csrf_token %}
+                    {{form}}
+                
+                    <button class="btn btn-secondary">
+                        Save
+                    </button>
+                </form>
+            </div>
+        </div>
+        
+    </main>
+
 
 {% endblock %}

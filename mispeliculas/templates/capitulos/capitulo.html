@@ -2,31 +2,39 @@
 
 
 {% block content %}
-<h1>Capitulos</h1>
 
-{% for capitulo in capitulos %}
+<main class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="text-center display-4 py-3">Capitulos</h1>
 
-<div>
-    <li>
-        <a href="{% url 'detalleCapitulo' capitulo.id %}">
-            <h1>{% if capitulo.visto == False %} ⏱ {% else %} ✅ {% endif %} {{capitulo.nombre}}</h1>
-            <h3>{{capitulo.descripcion}}</h3>
-        </a>
-    </li>
+                <ul class="list-group">
+                    {% for capitulo in capitulos %}
+                    <li class="list-group-item">
+                        <a href="{% url 'detalleCapitulo' capitulo.id %}" class="text-center">
+                            <header>
+                                <h1 class="fw-bold display-6">{% if capitulo.visto == False %} ⏱ {% else %} ✅ {% endif %} {{capitulo.nombre}}</h1>
+                            </header>
+                            <h3 class="display-7">{{capitulo.descripcion}}</h3>
+                            
+                        </a>
+                    
 
-<!---->
-    {% if capitulo.visto == False %}
-    <p>Capitulo aún no visto por {{capitulo.user.username}}</p>
-    {% else %}
-    <p>Capitulo visto por {{capitulo.user.username}}</p>
-    {% endif %}
-<!---->
-    <p>Serie: {{capitulo.serie.titulo}}</p>
-    <p>Temporada: {{capitulo.temporada}}</p>
-    <p>Autor: {{capitulo.user.username}}</p>
-    <p>Reseña: {{capitulo.reseña}}</p>
-</div>
-
-{% endfor %}
+                        {% if capitulo.visto == False %}
+                        <p>Capitulo aún no visto por {{capitulo.user.username}}</p>
+                        {% else %}
+                        <p>Capitulo visto por {{capitulo.user.username}}</p>
+                        {% endif %}
+                    
+                        <p>Serie: {{capitulo.serie.titulo}}</p>
+                        <p>Temporada: {{capitulo.temporada}}</p>
+                        <p>Autor: {{capitulo.user.username}}</p>
+                        <p>Reseña: {{capitulo.reseña}}</p>
+                    </li>
+                    {% endfor %}
+                </ul>
+        </div>
+    </div>
+</main>
 
 {% endblock %}

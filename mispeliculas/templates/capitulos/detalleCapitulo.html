@@ -4,29 +4,37 @@
 
 {% block content %}
 
-<h1>
+<h1 class="text-center">
     {{capitulo.nombre}}
 </h1>
 
-{{error}}
 
-<form method="POST">
 
-    {% csrf_token %}
-    {{form.as_p}}
-    <button>
-        Update
-    </button>
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4">
 
-</form>
-
-<form action="{% url 'deleteCapitulo' capitulo.id %}" method="POST">
-    {% csrf_token %}
-    <button>
-        Delete
-    </button>
-
-</form>
+            <form method="POST" class="card card-body text-center">
+                {{error}}
+                {% csrf_token %}
+                {{form.as_p}}
+                <button class="btn btn-secondary">
+                    Update
+                </button>
+            
+            </form>
+            
+            <form action="{% url 'deleteCapitulo' capitulo.id %}" method="POST"  class="card card-body text-center">
+                {% csrf_token %}
+                <button class="btn btn-primary">
+                    Delete
+                </button>
+            
+            </form>
+        </div>
+    </div>
+    
+</main>
 
 
 {% endblock %}

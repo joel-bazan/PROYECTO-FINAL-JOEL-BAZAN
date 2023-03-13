@@ -4,11 +4,40 @@
 
 {% block content %}
 
-<h1>{{title}}
-    
-</h1>
+<main class="container py-5">
+    <section class="card card-body">
+        <h1 class="display-1 text-center">
+            
+            {{title}}
+        
+        </h1>
+        
+        
+        <p class="text-center">Bienvenido al blog de reseñas de películas - proyecto final CoderHouse de Joel Bazán</p>
+        <div class="text-center">
+
+            {% if user.is_authenticated %}
+            
+
+            
+            {% else %}
+
+                <a class="btn btn-secondary" href="/signin/">
+                    Iniciar sesion
+                </a>
+                <a class="btn btn-dark" href="/signup/">
+                    Registrarse
+                </a>
+
+            {% endif %}
+        </div>
+        
+
+    </section>
+
+</main>
 
 
-<p>Bienvenido al blog de reseñas de películas - proyecto final CoderHouse de Joel Bazán</p>
+
 
 {% endblock %}
