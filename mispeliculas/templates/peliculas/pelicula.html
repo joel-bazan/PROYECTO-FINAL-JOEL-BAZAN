@@ -2,14 +2,28 @@
 
 {% block content %}
 
-<h1>Peliculas</h1>
+<main class="container">
+       <div class="row">
+           <div class="col-md-6 offset-md-3">
+               <h1 class="text-center display-4 py-3">Peliculas</h1>
+   
+                   <ul class="list-group">
+                            {% for pelicula in peliculas %}
+                       <li class="list-group-item">
+                            <article>
+                            <h1 class="fw-bold display-6">{{pelicula.titulo}}</h1>
+                            </article>
+                            <h3 class="display-7">{{pelicula.genero}}</h3>
 
-{% for pelicula in peliculas %}
+                           <p>Director: {{pelicula.director}}</p>
+                           <p>Autor de la reseña: {{pelicula.user.username}}</p>
+                           <p>Reseña: {{pelicula.reseña}}</p>
+                       </li>
+                       {% endfor %}
+                   </ul>
+           </div>
+       </div>
+   </main>
 
-<article>
-       <h1>{{pelicula.titulo}}</h1>
-</article>
-
-{%endfor%}
 
 {% endblock %}

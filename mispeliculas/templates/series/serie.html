@@ -2,14 +2,26 @@
 
 {% block content %}
 
-<h1>Series</h1>
+<main class="container">
+       <div class="row">
+           <div class="col-md-6 offset-md-3">
+               <h1 class="text-center display-4 py-3">Series</h1>
+   
+                   <ul class="list-group">
+                            {% for serie in series %}
+                       <li class="list-group-item">
+                            <article>
+                            <h1 class="fw-bold display-6">{{serie.titulo}}</h1>
+                            </article>
+                            <h3 class="display-7">{{serie.genero}}</h3>
 
-{% for serie in series %}
-
-<article>
-       <h1>{{serie.titulo}}</h1>
-</article>
-
-{%endfor%}
+                           <p>Temporadas: {{serie.temporadas}}</p>
+                           <p>Reseña: {{serie.reseña}}</p>
+                       </li>
+                       {% endfor %}
+                   </ul>
+           </div>
+       </div>
+   </main>
 
 {% endblock %}

@@ -169,5 +169,5 @@ def crear_pelicula(request):
             'form': form_crearPelicula()
         })
     else:
-        Serie.objects.create(titulo=request.POST["titulo"])
+        Pelicula.objects.create(titulo=request.POST["titulo"])
         return redirect('peliculas')
